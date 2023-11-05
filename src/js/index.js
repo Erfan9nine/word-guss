@@ -87,43 +87,34 @@ const selector = document.querySelectorAll("[data-selection]");
 const question = document.getElementById("questionMark");
 
 function caller(selector) {
+
   const cpu = Math.trunc(Math.random() * selectors.length);
   const computer = selectors[cpu].beat;
-
-  const choice = selector.id;
-
+console.log('cpu',computer);
+  const choice = selector.target.id;
+  
+  selector.target.setAttribute('disabled','');
   console.log("player ", choice);
-  if (choice === selectors[0].name && computer == selectors[0].beat) {
+  if(choice===computer[cpu].beat){
+    alert('draw');
+    return;
+  }
+
+  if (choice && computer === selectors[0].beat) {
     playerPoint++;
-    choice === selectors[0].name
-      ? PAPER.classList.add("opacity-0", "absolute", "hidden")
-      : PAPER.classList.remove("opacity-0", "absolute", "hidden");
-    choice === selectors[0].name
-      ? SCESSIOR.classList.add("opacity-0", "absolute", "hidden")
-      : SCESSIOR.classList.remove("opacity-0", "absolute", "hidden");
     PLAYERPOINT.innerHTML = `${playerPoint}`;
-  } else if (choice == selectors[1].name && computer == selectors[1].beat) {
+  } else if (choice  && computer === selectors[1].beat) {
     playerPoint++;
-    choice === selectors[1].name
-      ? PAPER.classList.add("opacity-0", "absolute", "hidden")
-      : PAPER.classList.remove("opacity-0", "absolute", "hidden");
-    choice === selectors[1].name
-      ? ROCK.classList.add("opacity-0", "absolute", "hidden")
-      : ROCK.classList.remove("opacity-0", "absolute", "hidden");
+
     PLAYERPOINT.innerHTML = `${playerPoint}`;
-  } else if (choice == selectors[2].name && computer == selectors[2].beat) {
+  } else if (choice  && computer === selectors[2].beat) {
     playerPoint++;
-    choice === selectors[2].name
-      ? ROCK.classList.add("opacity-0", "absolute", "hidden")
-      : ROCK.classList.remove("opacity-0", "absolute", "hidden");
-    choice === selectors[2].name
-      ? SCESSIOR.classList.add("opacity-0", "absolute", "hidden")
-      : SCESSIOR.classList.remove("opacity-0", "absolute", "hidden");
+
     PLAYERPOINT.innerHTML = `${playerPoint}`;
   } else if (
-    (choice == selectors[0].name && computer == selectors[0].name) ||
-    (choice == selectors[1].name && computer == selectors[1].name) ||
-    (choice == selectors[0].name && computer == selectors[0].name)
+    (choice === selectors[0].name && computer === selectors[0].name) ||
+    (choice === selectors[1].name && computer === selectors[1].name) ||
+    (choice === selectors[0].name && computer === selectors[0].name)
   ) {
     alert("draw");
   } else {
@@ -137,8 +128,12 @@ function caller(selector) {
   setTimeout(() => {
     document.getElementById("questionMark").innerText = selectors[cpu].emoji;
     CPUPOINT.innerText = `${cpuPoint}`;
-  }, 2000);
-
+    
+  }, 1000);
+setTimeout(() => {
+  eventRemove();
+  selector.target. removeAttribute('disabled');
+}, 2000);
   if (playerPoint == 10) {
     alert(`you won ${playerPoint} and cpu lost ${cpuPoint}`);
     playerPoint = 0;
@@ -153,17 +148,29 @@ function caller(selector) {
     PLAYERPOINT.innerHTML = 0;
     CPUPOINT.innerText = 0;
   }
+
+  console.log(selector.target.id);
+  
+  if(choice === selectors[0].name){
+    SCESSIOR.classList.add("absolute", "hidden")
+    PAPER.classList.add("absolute", "hidden")
+  }
+
+  if(  choice === selectors[2].name){
+    ROCK.classList.add("absolute", "hidden")
+    SCESSIOR.classList.add("absolute", "hidden")
+  }if(choice === selectors[1].name){
+    PAPER.classList.add("absolute", "hidden")
+    ROCK.classList.add("absolute", "hidden")
+  }
+  
 }
 
 
 
 
-const alerter = Number(prompt('enter your number'));
-const alerter1 = Number(prompt('enter your number'));
-const alerter2 = Number(prompt('enter your number'));
-
-const numbers=function(number1,number2,number3){
-console.log((number1+number2+number3) / 3);
+function eventRemove (){
+  PAPER.classList.remove("absolute", "hidden");
+  ROCK.classList.remove("absolute", "hidden");
+  SCESSIOR.classList.remove("absolute", "hidden");
 }
-numbers(alerter,alerter1,alerter2);
-

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/css/src.css" />
+    <title>Document</title>
+  </head>
+  <body class="bg-erfaner flex justify-center gap-6 flex-col items-center h-screen">
+    <div class="flex flex-col w-[250px] gap-6">
+      <label for="height">
+        <p>height</p>
+        <input type="range" id="height" class="w-full" max="280" min="130" />
+      </label>
+      <label for="weight">
+        <p>weight</p>
+        <input type="range" class="w-full" id="weight" max="140" min="20" />
+      </label>
+      <button
+        class="border-2 border-black/30 rounded-lg bg-gradient-to-tr from-erfan via-erfn1 to-erfan2 h"
+      >
+        click me
+      </button>
+    </div>
+    <div id="live">
+      <p>
+        height:
+
+        <span id="live-height"> </span>
+      </p>
+      <p>
+        weight:
+        <span id="live-weight"> </span>
+      </p>
+    </div>
+    <p id="result" class="font-bold text-2xl"></p>
+    <script src="./src/js/bmi.js"></script>
+  </body>
+</html>
